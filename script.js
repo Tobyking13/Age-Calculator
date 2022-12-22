@@ -1,7 +1,4 @@
-
-
 let userAge = [];
-let ageDifference = [];
 
 let dateInput = document.querySelector('#date');
 
@@ -28,18 +25,8 @@ dateInput.addEventListener('input', () => {
     let yearDifference = year - userYear;
     ageDifference.push(yearDifference);
 
+    let dayDOM = document.createElement('h4');
+    dayDOM.innerHTML = ("You've been alive " + dayDifference + " days, " + monthDifference + " months & " + yearDifference + " years.");
+    document.body.appendChild(dayDOM);
 
-    console.log(ageDifference);
-})
-
-
-
-
-
-
-
-
-
-
-
-// ageFunction(userAge);
+});
