@@ -1,23 +1,45 @@
-let userAge = [13, 04, 1991];
+
+
+let userAge = [];
 let ageDifference = [];
 
+let dateInput = document.querySelector('#date');
 
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
+dateInput.addEventListener('input', () => {
+    let ageDifference = [];
+    userAge = new Date(dateInput.value);
 
-let ageFunction = function (arr) {
+    let userDay = userAge.getDate();
+    let userMonth = userAge.getMonth() + 1;
+    let userYear = userAge.getFullYear();
     
-    let dateDifference = day - arr[0];
-    ageDifference.push(dateDifference);
+    let date = new Date();
+    
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
 
-    let monthDifference = month - arr[1];
+    let dayDifference = day - userDay;
+    ageDifference.push(dayDifference);
+
+    let monthDifference = month - userMonth;
     ageDifference.push(monthDifference);
-    
-    let yearDifference = year - arr[2];
-    ageDifference.push(yearDifference);
-};
 
-ageFunction(userAge);
-console.log(ageDifference);
+    let yearDifference = year - userYear;
+    ageDifference.push(yearDifference);
+
+
+    console.log(ageDifference);
+})
+
+
+
+
+
+
+
+
+
+
+
+// ageFunction(userAge);
