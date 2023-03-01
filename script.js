@@ -1,32 +1,39 @@
-let userAge = [];
-
 let dateInput = document.querySelector('#date');
-
 dateInput.addEventListener('input', () => {
-    let ageDifference = [];
-    userAge = new Date(dateInput.value);
-
-    let userDay = userAge.getDate();
-    let userMonth = userAge.getMonth() + 1;
-    let userYear = userAge.getFullYear();
+    let userAge = new Date(dateInput.value);
+    let userYear = new Date(dateInput.value).getFullYear()
     
-    let date = new Date();
-    
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    let dayDifference = day - userDay;
-    ageDifference.push(dayDifference);
-
-    let monthDifference = month - userMonth;
-    ageDifference.push(monthDifference);
-
-    let yearDifference = year - userYear;
-    ageDifference.push(yearDifference);
-
-    let dayDOM = document.createElement('h4');
-    dayDOM.innerHTML = ("You've been alive " + dayDifference + " days, " + monthDifference + " months & " + yearDifference + " years.");
-    document.body.appendChild(dayDOM);
-
+    if (userYear > 1111) {
+        ageDif(userAge);
+    }
 });
+
+let ageDif = function (userAge) {
+    let today = new Date();
+    let timeDiff = today.getTime() - userAge.getTime();
+    const timeObj = {
+        ms: Math.floor(timeDiff),
+        seconds: Math.floor(timeDiff / 1000),
+        minutes: Math.floor(timeDiff / (1000 * 60)),
+        hours: Math.floor(timeDiff / (1000 * 60 * 60)),
+        days: Math.floor(timeDiff / (1000 * 3600 * 24)),
+        months: Math.floor(timeDiff / (1000 * 3600 * 24 * 12)),
+        years: Math.floor(timeDiff / (1000 * 3600 * 24 * 365))
+    }
+    renderDate(timeObj);
+}
+
+function renderDate(timeObj) {
+    let aliveStatement = document.createElement('h1').textContent = ("You have been alive for");
+    //let ageDisplay = document.getElementById('age-display');
+    document.body.append(aliveStatement);
+
+    for (const [key, value] of Object.entries(timeObj)) {
+        let dayDOM = document.createElement('h4');
+
+        dayDOM.textContent = (`${key}: ${value}`);
+        
+        document.body.append(dayDOM);
+        
+    }
+}
