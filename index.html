@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Toby's age calculator</title>
 </head>
 <body>
-    <h1>Age Calculator</h1>
-    <h3>Please enter your birthday</h3>
-    <form action="">
-    <label for="date">Date
-        <input type="date" id="date" name="date">
-    </label>
-    </form>
-    <div class="container" id="age-display">
-
+    <nav>
+        <h1 id="nav-title">Age Calculator</h1>
+        <button class="contrast" id="light-dark-switch">Dark Mode</button>
+    </nav>
+    <div class="container" id="main-container">
+        <h3>Please enter your birthday</h3>
+        <form action="">
+        <label for="date">Date
+            <input type="date" id="date" name="date">
+        </label>
+        </form>
+        <div class="container" id="age-display">
+    
+        </div>
     </div>
+   
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
     

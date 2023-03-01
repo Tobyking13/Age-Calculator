@@ -1,7 +1,7 @@
 let dateInput = document.querySelector('#date');
 dateInput.addEventListener('input', () => {
     let userAge = new Date(dateInput.value);
-    let userYear = new Date(dateInput.value).getFullYear()
+    let userYear = new Date(dateInput.value).getFullYear();
     
     if (userYear > 1111) {
         ageDif(userAge);
@@ -24,16 +24,19 @@ let ageDif = function (userAge) {
 }
 
 function renderDate(timeObj) {
-    let aliveStatement = document.createElement('h1').textContent = ("You have been alive for");
-    //let ageDisplay = document.getElementById('age-display');
-    document.body.append(aliveStatement);
-
+    let aliveStatement = $('<h2>').text('You have been alive for: ');
+    $('#age-display').append(aliveStatement)
     for (const [key, value] of Object.entries(timeObj)) {
         let dayDOM = document.createElement('h4');
-
         dayDOM.textContent = (`${key}: ${value}`);
-        
-        document.body.append(dayDOM);
-        
+        $('#age-display').append(dayDOM);
     }
 }
+
+$('#light-dark-switch').click(function() {
+    const isLightTheme = $('html').attr('data-theme') === 'light'; 
+    $('html').attr('data-theme', isLightTheme ? 'dark' : 'light');
+    $('#light-dark-switch').text(isLightTheme ? 'Light Mode' : 'Dark Mode');
+    $('#light-dark-switch').attr('class', isLightTheme ? 'contrast outline' : 'contrast');
+    $('nav').css('border-bottom', isLightTheme ? '1px solid rgb(227, 227, 227)' : '1px solid rgb(152, 152, 152)');
+})
