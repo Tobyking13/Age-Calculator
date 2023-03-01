@@ -27,33 +27,24 @@ let ageDif = function (userAge, timeObj) {
         months: Math.floor(timeDiff / (1000 * 3600 * 24 * 12)),
         years: Math.floor(timeDiff / (1000 * 3600 * 24 * 365)),
     }
-    //timeAlive(timeObj);
     renderDate(timeObj);
 }
 
 function timeAlive(userAge) {
-    let todayEpoch = new Date().getTime();
-    let birthEpoch = Date.parse(userAge);
-    let epochDifference = todayEpoch - birthEpoch;
-    let date = new Date(epochDifference);
-    let years = (date.getFullYear() - 1970);
-    let months = date.getMonth() - 1;
-    let days = date.getDay();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    let dayWord;
-    if (days > 1) {
-        dayWord = "days"
-    } else {
-        dayWord = "day"
-    }
-    let dateAlive = $('<h5>').text(`${years} years, ${months} months, ${days} ${dayWord}, ${hours} hours, ${minutes} minutes & ${seconds} seconds`);
+    const todayEpoch = new Date().getTime();
+    const birthEpoch = Date.parse(userAge);
+    const epochDifference = todayEpoch - birthEpoch;
+    const date = new Date(epochDifference);
+    const years = (date.getFullYear() - 1970);
+    const months = date.getMonth() - 1;
+    const days = date.getDay();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const dayWord = days === 1 ? 'day' : 'days';
+    const dateAlive = $('<h5>').text(`${years} years, ${months} months, ${days} ${dayWord}, ${hours} hours, ${minutes} minutes & ${seconds} seconds`);
     $('#age-display').append(dateAlive);
-    
 }
-
-
 
 function renderDate(timeObj) {
     let aliveStatement = $('<h2>').text('You have been alive for: ');
