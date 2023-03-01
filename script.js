@@ -1,18 +1,23 @@
-let dateInput = document.querySelector('#date');
-dateInput.addEventListener('input', () => {
-    let userAge = new Date(dateInput.value);
-    let userYear = new Date(dateInput.value).getFullYear();
-    
-    if (userYear > 1111) {
-        ageDif(userAge);
-    }
-});
+$('#date').click(function() {
+    let userAge = "";
+    let userYear = "";
+    let timeObj = {};
+    $('#date').val("");
+    $('#date').on('input', () => {
+        userAge = new Date($('#date').val());
+        userYear = new Date($('#date').val()).getFullYear();
+        if (userYear > 1111) {
+            $('#age-display').text("");
+            ageDif(userAge, timeObj);
+        }
+    });
+})
 
-let ageDif = function (userAge) {
+let ageDif = function (userAge, timeObj) {
     let today = new Date();
     let timeDiff = today.getTime() - userAge.getTime();
-    const timeObj = {
-        ms: Math.floor(timeDiff),
+    timeObj = {
+        milliseconds: Math.floor(timeDiff),
         seconds: Math.floor(timeDiff / 1000),
         minutes: Math.floor(timeDiff / (1000 * 60)),
         hours: Math.floor(timeDiff / (1000 * 60 * 60)),
@@ -25,10 +30,10 @@ let ageDif = function (userAge) {
 
 function renderDate(timeObj) {
     let aliveStatement = $('<h2>').text('You have been alive for: ');
-    $('#age-display').append(aliveStatement)
+    $('#age-display').append(aliveStatement);
     for (const [key, value] of Object.entries(timeObj)) {
         let dayDOM = document.createElement('h4');
-        dayDOM.textContent = (`${key}: ${value}`);
+        dayDOM.textContent = (`${value.toLocaleString('en-US')} ${key}`);
         $('#age-display').append(dayDOM);
     }
 }
